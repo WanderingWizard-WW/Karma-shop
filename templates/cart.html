@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!-- Start Banner Area -->
+    <section class="banner-area organic-breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+                <div class="col-first">
+                    <h1>Корзина {% if not cart.products.count %}пуста{% endif %}</h1>
+
+                    <nav class="d-flex align-items-center">
+                        <a href="{% url 'home' %}">Главная<span class="lnr lnr-arrow-right"></span></a>
+                        <a href="{% url 'cart' %}">Корзина</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Banner Area -->
+   {% if not cart.products.count %} <h1 style="margin:250px;text-align:center">Корзина пуста</h1>{% endif %}
+{% if cart.products.count %}
+
+
+    <!--================Cart Area =================-->
+    <section class="cart_area">
+        <div class="container">
+            <div class="cart_inner">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Продукт</th>
+                            <th scope="col">Цена</th>
+                            <th scope="col">Кол-во</th>
+                            <th scope="col">Общая цена</th>
+                            <th scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in cart.products.all %}
+                            <tr>
+                                <td>
+                                    <div class="media">
+                                        <div class="d-flex img-fluid">
+                                            <img class="img-fluid" style="max-width:160px;"
+                                                 src="{{ item.product.image.url }}" alt="">
+                                        </div>
+                                        <div class="media-body">
+                                            <h5>{{ item.product.title|upper }}</h5>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <h5>{{ item.product.price }} ₴</h5>
+                                </td>
+                                <td>
+                                    <form action="{% url "change_qty"  slug=item.product.slug %}" method="POST">
+                                        {% csrf_token %}
+
+
+                                        <div class="product_count">
+                                            <input type="text" name="qty" id="sst{{ item.product.id }}" maxlength="12"
+                                                   min="1"
+                                                   value="{{ item.qty }}"
+                                                   title="Quantity:"
+                                                   class="input-text qty">
+                                            <button onclick="var result = document.getElementById('sst{{ item.product.id }}'); var sst{{ item.product.id }} = result.value; if( !isNaN( sst{{ item.product.id }} )) result.value++;return false;"
+                                                    class="increase items-count" type="button"><i
+                                                    class="lnr lnr-chevron-up"></i></button>
+                                            <button onclick="var result = document.getElementById('sst{{ item.product.id }}'); var sst{{ item.product.id }} = result.value; if( !isNaN( sst{{ item.product.id }} ) &amp;&amp; sst{{ item.product.id }} > 1 ) result.value--;return false;"
+                                                    class="reduced items-count" type="button"><i
+                                                    class="lnr lnr-chevron-down"></i></button>
+                                        </div>
+                                        <button type="submit" class="btn">
+                                            <svg width="1.2em" height="1.7em" viewBox="0 0 16 16"
+                                                 class="bi bi-arrow-clockwise" fill="currentColor"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                      d="M3.17 6.706a5 5 0 0 1 7.103-3.16.5.5 0 1 0 .454-.892A6 6 0 1 0 13.455 5.5a.5.5 0 0 0-.91.417 5 5 0 1 1-9.375.789z"/>
+                                                <path fill-rule="evenodd"
+                                                      d="M8.147.146a.5.5 0 0 1 .707 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 1 1-.707-.708L10.293 3 8.147.854a.5.5 0 0 1 0-.708z"/>
+
+                                            </svg>
+                                        </button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <h5>{{ item.final_price }} ₴</h5>
+                                </td>
+                                <td><a href="{% url 'delete_from_cart' slug=item.product.slug %}"
+                                       class="genric-btn primary radius">Удалить</a></td>
+                            </tr>
+                        {% endfor %}
+
+                        <tr>
+                            <td>
+
+                            </td>
+                            <td>
+
+                            </td>
+                            <td>
+                                <h5>Итого:</h5>
+                            </td>
+                            <td>
+                                <h5>{{ cart.final_price }} ₴</h5>
+                            </td>
+                            <td></td>
+                        </tr>
+
+                        <tr class="out_button_area">
+                            <td>
+
+                            </td>
+                            <td>
+
+                            </td>
+                            <td>
+
+                            </td>
+                            <td>
+                                <div class="checkout_btn_inner d-flex align-items-center">
+                                    <a class="primary-btn" href="{% url 'checkout' %}">Оформление заказа</a>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+    <!--================End Cart Area =================-->
+
+{% endblock %}

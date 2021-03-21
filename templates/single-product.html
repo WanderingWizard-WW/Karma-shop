@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+    <!-- Start Banner Area -->
+    <section class="banner-area organic-breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+                <div class="col-first">
+                    <h1>KARMA SHOP</h1>
+                    <nav class="d-flex align-items-center">
+                        <a href="{% url 'home' %}">Главная<span class="lnr lnr-arrow-right"></span></a>
+                        <a href="{% url 'filter' %}?category={{ product.category.slug }}">{{ product.category }}<span
+                                class="lnr lnr-arrow-right"></span></a>
+                        <span href="single-product.html" style="color:black;">{{ product.title }}</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Banner Area -->
+    <!--================Single Product Area =================-->
+    <div class="product_image_area">
+        <div class="container">
+            <div class="row s_product_inner">
+                <div class="col-lg-6">
+                    <div class="s_Product_carousel">
+                    <img class="img-fluid" src="{{ product.image.url }}" alt="">
+                        {% for img in product.productimages_set.all %}
+                            <div class="single-prd-item">
+                                <img class="img-fluid" src="{{ img.image.url }}" alt="">
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-lg-5 offset-lg-1">
+                    <div class="s_product_text">
+                        <h3>{{ product.title }}</h3>
+                        <h2>{{ product.price }} ₴</h2>
+                        <ul class="list">
+                            <li><a class="active" href="{% url 'filter' %}?category={{ product.category.slug }}"><span>Категория</span>{{ product.category }}
+                            </a></li>
+                            <li><a href="#"><span>Наличие:</span>{% if product.available == True %}В наличии{% else %}
+                                Нет в наличи{% endif %}</a></li>
+                        </ul>
+                        <p>{{ product.description }}</p>
+                        <div class="single-element-widget mt-30">
+                            <h3 class="mb-30">Доступные размеры</h3>
+                            <div class="default-select" id="default-select">
+                                <select>
+                                    {% for size in product.specifcation.all %}
+                                        <option value="{{ size }}">{{ size }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <br>
+                            <div class="card_area d-flex align-items-center">
+                                <a class="primary-btn" href="{% url 'add_to_cart' slug=product.slug %}">Добавить в
+                                    корзину</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--================End Single Product Area =================-->
+
+        <!--================Product Description Area =================-->
+        <section class="product_description_area">
+            <div class="container">
+                <hr>
+                <div class="tab-content" id="myTabContent">
+                    <div class="table">
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <h5>Материал</h5>
+                                </td>
+                                <td>
+                                    <h5>
+                                        {{ product.material }}
+                                    </h5>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5>Цвет</h5>
+                                </td>
+                                <td>
+                                    <h5>{{ product.color }}</h5>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <h5>Старана производитель</h5>
+                                </td>
+                                <td>
+                                    <h5>
+
+                                        {{ product.contry }}
+
+                                    </h5>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5>ID</h5>
+                                </td>
+                                <td>
+                                    <h5>{{ product.model_id }}</h5>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock %}

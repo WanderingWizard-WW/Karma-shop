@@ -1,0 +1,255 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <!-- start banner Area -->
+    <section class="banner-area">
+        <div class="container">
+            <div class="row fullscreen align-items-center justify-content-start">
+                <div class="col-lg-12">
+                    <div class="active-banner-slider owl-carousel">
+                        <!-- single-slide -->
+                        <div class="row single-slide align-items-center d-flex">
+                            <div class="col-lg-5 col-md-6">
+                                <div class="banner-content">
+                                    <h1>Nike New <br>Collection!</h1>
+                                    <div class="add-bag d-flex align-items-center">
+                                        <a class="add-btn" href="{% url 'filter' %}"><span class="lnr lnr-cross"></span></a>
+                                        <span class="add-text text-uppercase">Посмотрите прямо сейчас</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="banner-img">
+                                    <img class="img-fluid" src="{% static '/img/banner/banner-img.png' %}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- single-slide -->
+                        <div class="row single-slide align-items-center d-flex">
+                            <div class="col-lg-5 col-md-6">
+                                <div class="banner-content">
+                                    <h1>Nike New <br>Collection!</h1>
+                                    <div class="add-bag d-flex align-items-center">
+                                        <a class="add-btn" href="{% url 'filter' %}"><span class="lnr lnr-cross"></span></a>
+                                        <span class="add-text text-uppercase">Посмотрите прямо сейчас</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="banner-img">
+                                    <img class="img-fluid" src="{% static '/img/banner/banner-img.png' %}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End banner Area -->
+
+    <!-- start features Area -->
+    <section class="features-area section_gap">
+        <div class="container">
+            <div class="row features-inner">
+                <!-- single features -->
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="single-features">
+                        <div class="f-icon">
+                            <img src="{% static '/img/features/f-icon1.png' %}" alt="">
+                        </div>
+                        <h6>Free delivery</h6>
+                        <p>Все заказы мы отправим бесплатно</p>
+                    </div>
+                </div>
+                <!-- single features -->
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="single-features">
+                        <div class="f-icon">
+                            <img src="{% static '/img/features/f-icon2.png' %}" alt="">
+                        </div>
+                        <h6>Return Policy</h6>
+                        <p>Бесплатный возврат в течении 14 дней</p>
+                    </div>
+                </div>
+                <!-- single features -->
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="single-features">
+                        <div class="f-icon">
+                            <img src="{% static '/img/features/f-icon3.png' %}" alt="">
+                        </div>
+                        <h6>24/7 Support</h6>
+                        <p>Круглосуточная поддержка</p>
+                    </div>
+                </div>
+                <!-- single features -->
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="single-features">
+                        <div class="f-icon">
+                            <img src="{% static '/img/features/f-icon4.png' %}" alt="">
+                        </div>
+                        <h6>Secure Payment</h6>
+                        <p>Все платежи защищены</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end features Area -->
+
+    <!-- Start category Area -->
+    <section class="category-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-12">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-8">
+                            <div class="single-deal">
+                                <div class="overlay"></div>
+                                <img class="img-fluid w-100" src="{% static '/img/category/c1.jpg' %}" alt="">
+                                <a href="{% static '/img/category/c1.jpg' %}" class="img-pop-up" target="_blank">
+                                    <div class="deal-details">
+                                        <h6 class="deal-title">Sneaker for Sports</h6>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <div class="single-deal">
+                                <div class="overlay"></div>
+                                <img class="img-fluid w-100" src="{% static '/img/category/c2.jpg' %}" alt="">
+                                <a href="{% static '/img/category/c2.jpg' %}" class="img-pop-up" target="_blank">
+                                    <div class="deal-details">
+                                        <h6 class="deal-title">Sneaker for Sports</h6>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <div class="single-deal">
+                                <div class="overlay"></div>
+                                <img class="img-fluid w-100" src="{% static '/img/category/c3.jpg' %}" alt="">
+                                <a href="{% static '/img/category/c3.jpg' %}" class="img-pop-up" target="_blank">
+                                    <div class="deal-details">
+                                        <h6 class="deal-title">Product for Couple</h6>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-md-8">
+                            <div class="single-deal">
+                                <div class="overlay"></div>
+                                <img class="img-fluid w-100" src="{% static '/img/category/c4.jpg' %}" alt="">
+                                <a href="{% static '/img/category/c4.jpg' %}" class="img-pop-up" target="_blank">
+                                    <div class="deal-details">
+                                        <h6 class="deal-title">Sneaker for Sports</h6>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-deal">
+                        <div class="overlay"></div>
+                        <img class="img-fluid w-100 h-50" style="width:250px" src="{% static '/img/category/c5.jpg' %}"
+                             alt="">
+                        <a href="{% static '/img/category/c5.jpg' %}" class="img-pop-up" target="_blank">
+                            <div class="deal-details">
+                                <h6 class="deal-title">Sneaker for Sports</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End category Area -->
+
+    <!-- start product Area -->
+    <section class="owl-carousel active-product-area section_gap">
+        <!-- single product slide -->
+        <div class="single-product-slider">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 text-center">
+                        <div class="section-title">
+                            <h1>New collection</h1>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- single product -->
+                    {% for product in products %}
+                        <div class="col-lg-3 col-md-6">
+                            <div class="single-product">
+                                <a href="{{ product.get_absolute_url }}"><img class="img-fluid"
+                                                                              src="{{ product.image.url }}" alt=""></a>
+                                <div class="product-details">
+                                    <h6>{{ product.title }}</h6>
+                                    <div class="price">
+                                        <h6>{{ product.price }} ₴</h6>
+                                    </div>
+                                    <div class="prd-bottom">
+                                        <a href="{% url 'add_to_cart' slug=product.slug %}" class="social-info">
+                                            <span class="ti-bag"></span>
+                                            <p class="hover-text">В корзину</p>
+                                        </a>
+                                        <a href="{{ product.get_absolute_url }}" class="social-info">
+                                            <span class="lnr lnr-move"></span>
+                                            <p class="hover-text">Подробнее</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="single-product-slider">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 text-center">
+                        <div class="section-title">
+                            <h1>Sale</h1>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- single product -->
+                    {% for product in products %}
+                        <div class="col-lg-3 col-md-6">
+                            <div class="single-product">
+                                <a href="{{ product.get_absolute_url }}"><img class="img-fluid"
+                                                                              src="{{ product.image.url }}" alt=""></a>
+                                <div class="product-details">
+                                    <h6>{{ product.title }}</h6>
+                                    <div class="price">
+                                        <h6>{{ product.price }} ₴</h6>
+                                    </div>
+                                    <div class="prd-bottom">
+                                        <a href="{% url 'add_to_cart' slug=product.slug %}" class="social-info">
+                                            <span class="ti-bag"></span>
+                                            <p class="hover-text">В корзину</p>
+                                        </a>
+                                        <a href="{{ product.get_absolute_url }}" class="social-info">
+                                            <span class="lnr lnr-move"></span>
+                                            <p class="hover-text">Подробнее</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!-- single product slide -->
+
+    </section>
+{% endblock %}
+

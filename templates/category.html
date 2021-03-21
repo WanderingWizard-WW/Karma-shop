@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <section class="banner-area organic-breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+                <div class="col-first">
+                    <h1>KARMA SHOP</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br>
+    <!-- End Banner Area -->
+    <div class="container">
+        <div class="row">
+
+            <div class="col-xl-3 col-lg-4 col-md-5">
+                <form action="">
+                    <div class="sidebar-filter mt-50">
+                        <div class="head">Категории</div>
+                        <div class="common-filter">
+
+                            <ul>
+                                {% for categ in view.get_category %}
+                                    <li class="filter-list">
+                                        <input class="pixel-radio" type="radio"
+                                               value="{{ categ.slug }}" id="apple"
+                                               name="category"><label
+                                            for="apple">{{ categ.name }}</label></li>
+                                {% endfor %}
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="sidebar-filter mt-50">
+                        <div class="common-filter">
+                            <div class="head">Бренд</div>
+                            <ul>
+                                {% for brand in view.get_brand %}
+                                    <li class="filter-list"><input class="pixel-radio" type="checkbox"
+                                                                   value="{{ brand.title }}" id="apple"
+                                                                   name="brand"><label
+                                            for="apple">{{ brand.title }}</label></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="common-filter">
+                            <div class="head">Материал</div>
+                            <ul>
+                                {% for material in view.get_material %}
+                                    <li class="filter-list"><input class="pixel-radio" type="checkbox"
+                                                                   id="{{ material.id }}"
+                                                                   value="{{ material.title }}" name="material"><label
+                                            for="black">{{ material.title }}</label></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <br>
+                        <input type="submit" class="genric-btn default-border btn-block" value="Применить фильтр"
+                               style="font-size:15px;">
+                    </div>
+                </form>
+            </div>
+            <div class="col-xl-9 col-lg-8 col-md-7">
+                <section class="lattest-product-area pb-40 category-list">
+                    <div class="row">
+                        {% for item in page_obj %}
+                            <div class="col-lg-4 col-md-6">
+                                <div class="single-product">
+                                    <a href="{{ item.get_absolute_url }}"><img class="img-fluid"
+                                                                                   src="{{ item.image.url }}" alt=""></a>
+                                    <div class="product-details">
+                                        <h6>{{ item.title }}</h6>
+                                        <div class="price">
+                                            <h6>{{ item.price }} ₴</h6>
+                                        </div>
+                                        <div class="prd-bottom">
+                                            <a href="{% url 'add_to_cart' slug=item.slug %}" class="social-info">
+                                                <span class="ti-bag"></span>
+                                                <p class="hover-text">В корзину</p>
+                                            </a>
+                                            <a href="{{ item.get_absolute_url }}" class="social-info">
+                                                <span class="lnr lnr-move"></span>
+                                                <p class="hover-text">Подробнее</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        {% endfor %}
+                    </div>
+                </section>
+                {% include 'include/pagination.html' %}
+            </div>
+        </div>
+    </div>
+    <br>
+{% endblock content %}

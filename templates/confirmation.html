@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!-- Start Banner Area -->
+    <section class="banner-area organic-breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+                <div class="col-first">
+                    <h1>KARMA</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Banner Area -->
+
+    <!--================Order Details Area =================-->
+    <section class="order_details section_gap">
+        <div class="container">
+            <h3 class="title_confirmation">Спасибо за заказ! Менеджер свяжеться с вами</h3>
+            <div class="row order_d_inner">
+                <div class="col-lg-4">
+                    <div class="details_item">
+                        <h4>Информация о заказе</h4>
+                        <ul class="list">
+                            <li><a href="#"><span>Номер заказа</span> : {{ order.id }}</a></li>
+                            <li><a href="#"><span>Дата получения</span> : {{ order.order_date }}</a></li>
+                            <li><a href="#"><span>Цена за всё</span> : UAN {{ order.cart.final_price }} ₴</a></li>
+                            <li><a href="#"><span>Способ получение</span> : {{ order.get_buying_type_display }}</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="details_item">
+                        <h4>Данные получателя</h4>
+                        <ul class="list">
+                            <li><a href="#"><span>Имя</span> : {{ order.first_name }}</a></li>
+                            <li><a href="#"><span>Фамилия</span> : {{ order.last_name }}</a></li>
+                            <li><a href="#"><span>Адресс</span> : {{ order.address }}</a></li>
+                            <li><a href="#"><span>Номер телефона </span> : {{ order.phone }}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="order_details_table">
+                <h2>Детали заказа</h2>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Товар</th>
+                            <th scope="col">Кол-во</th>
+                            <th scope="col">Общая цена</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in order.cart.products.all %}
+
+                            <tr>
+                                <td>
+                                    <p>{{ item.product.title|upper }}</p>
+                                </td>
+                                <td>
+                                    <h5>x {{ item.qty }}</h5>
+                                </td>
+                                <td>
+                                    <p>{{ item.final_price }} ₴</p>
+                                </td>
+                            </tr>
+                            <tr>
+                        {% endfor %}
+                        <td>
+                            <h4>Итоговая цена:</h4>
+                        </td>
+                        <td>
+                            <h5></h5>
+                        </td>
+                        <td>
+                            <p>{{ order.cart.final_price }} ₴</p>
+                        </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

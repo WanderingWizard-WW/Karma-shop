@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!-- Start Banner Area -->
+    <section class="banner-area organic-breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+                <div class="col-first">
+                    <h1>Ваш профиль</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Banner Area -->
+
+    <!--================Cart Area =================-->
+    <section class="cart_area">
+        <div class="container">
+            <div class="cart_inner">
+                <div class="table-responsive">
+                    <table class="table">
+
+                        <thead>
+                        <th scope="col">Номер</th>
+                        <th scope="col">Статус</th>
+                        <th scope="col">Тип</th>
+                        <th scope="col">Сумма</th>
+                        <th scope="col">Товар</th>
+                        <th scope="col">Дополнительно</th>
+                        </thead>
+                        <tbody>
+
+                        {% for order in orders %}
+                            <tr>
+                                <td scope="row">{{ order.id }}</td>
+                                <td>{{ order.get_status_display }}</td>
+                                <td>{{ order.get_buying_type_display }}</td>
+                                <td>{{ order.cart.final_price }} руб.</td>
+                                <td>
+                                    <ul>
+                                        {% for item in order.cart.products.all %}
+                                            <li><a href="{{ item.product.get_absolute_url }}"
+                                                   style="color:darkcyan;">{{ item.product.title }}</a>
+                                                x {{ item.qty }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </td>
+                                <td>
+                                    <a style="font-size:13px;" class='genric-btn primary'
+                                       href="{% url "order_info" slug=order.id %}">Детально</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <hr>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!--================End Cart Area =================-->
+
+{% endblock %}

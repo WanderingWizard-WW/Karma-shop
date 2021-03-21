@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+<!-- End Header Area -->
+{% block content %}
+    <!-- Start Banner Area -->
+    <section class="banner-area organic-breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+                <div class="col-first">
+                    <h1>Оформление заказа</h1>
+                    <nav class="d-flex align-items-center">
+                        <a href="{% url 'home' %}">Главная<span class="lnr lnr-arrow-right"></span></a>
+                        <a href="#">Ваш заказ</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Banner Area -->
+
+    <!--================Checkout Area =================-->
+
+    <section class="checkout_area section_gap">
+        <form action="{% url 'make_order' %}" method="POST">
+            {% csrf_token %}
+            <div class="container">
+                <div class="billing_details">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h3>Детали заказа</h3>
+                            {{ form|crispy }}
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="order_box">
+                                <h2>Ваш заказ</h2>
+                                <ul class="list">
+                                    <li><a href="#">Товар <span>Общая цена</span></a></li>
+                                    {% for item in cart.products.all %}
+                                        <li><a href="{{ item.product.get_absolute_url }}">{{ item.product.title|upper }}
+                                            <span
+                                                    class="middle">x {{ item.qty }}</span> <span
+                                                    class="last">{{ item.final_price }} ₴</span></a></li>
+                                    {% endfor %}
+                                </ul>
+                                <ul class="list list_2">
+                                    <li><a href="#">Итого: <span>{{ cart.final_price }} ₴</span></a></li>
+                                </ul>
+                                <button type="submit" class="genric-btn primary btn-block" style="font-size:15px;">
+                                    Оформить заказ
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+    <!--================End Checkout Area =================-->
+{% endblock %}
